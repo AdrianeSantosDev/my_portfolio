@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://adrianesantosdev.github.io/my_portfolio/",
+  "homepage": "https://adrianesantosdev.github.io/my_portfolio",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
     "module": "^1.2.5",
     "path": "^0.12.7",
     "react": "^18.2.0",
