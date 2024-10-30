@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 
 // Design
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded';
 
 // Internal
 import my_pic from '../assets/me1.webp'
@@ -10,24 +11,31 @@ import my_pic from '../assets/me1.webp'
 
 const styleSx = {
   main: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    flexDirection: "column",
+    height: "100vh",
     marginTop: "80px",
-    width: 'calc(960px - 40px)',
+    width: 'calc(1050px - 40px)',
+    gap: 12
+  },
+  infoSection: {
     borderRadius: 20,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    height: "80vh",
-    marginBottom: "20px",
-    "@media (max-width: 1150px)": {
+    width: "100%",
+    "@media (max-width: 1250px)": {
       flexDirection: "column",
-      height: "100vh",
+      // height: "100vh",
       width: "100%",
-      padding: "20px",
+      // padding: "20px",
       justifyContent: "center",
       alignItems: "center",
       textAlign: "center",
-      marginTop: "0px",
-      gap: 6,
+      // marginTop: "0px",
+      gap: 2,
     },
   },
   textBox: {
@@ -46,8 +54,14 @@ const styleSx = {
     letterSpacing: "0.1em"
   },
   imageBox: {
-    "@media (max-width: 1150px)": {
+    width: "320px",
+    height: "320px",
+    "@media (max-width: 1250px)": {
       order: -1,
+      width: "250px",
+      height: "250px",
+      transition: "width 0.5s, height 0.5s",
+      marginBottom: "20px",
     },
     "@keyframes transformImage": {
       "0%": {
@@ -60,12 +74,12 @@ const styleSx = {
     animation: "transformImage 1s"
   },
   imgStyle: {
-    width: "320px",
-    height: "320px",
+    width: "100%",
+    height: "100%",
     borderRadius: "50%",
     border: "1px solid black",
     marginTop: "20px",
-    animation: "morph 6s linear infinite",
+    animation: "morph 6s linear infinite"
   }
 }
 
@@ -94,43 +108,75 @@ function LandingSection() {
   }, [])
 
   return (
-
     <Box sx={styleSx.main}>
-      <Box sx={styleSx.textBox}>
-        <Typography
-          sx={{
-            ...styleSx.typography,
-            fontSize: "1.7rem",
-            "@media (max-width: 1150px)": {
-              fontWeight: "bold",
-            }
-          }}>
-          Hi, I'm
-        </Typography>
-
-        <Typography
-          sx={{
-            ...styleSx.typography,
-            fontSize: "1.6rem",
-            "@media (max-width: 1150px)": {
+      <Box sx={styleSx.infoSection}>
+        <Box sx={styleSx.textBox}>
+          <Typography
+            sx={{
+              ...styleSx.typography,
               fontSize: "1.7rem",
-              fontWeight: "bold",
+              "@media (max-width: 1250px)": {
+                fontWeight: "bold",
+              }
+            }}>
+            Hi, I'm
+          </Typography>
+
+          <Typography
+            sx={{
+              ...styleSx.typography,
+              fontSize: "1.6rem",
+              "@media (max-width: 1250px)": {
+                fontSize: "1.7rem",
+                fontWeight: "bold",
+              }
+            }}>
+            Dri Santos
+          </Typography>
+
+          <Typography sx={{
+            ...styleSx.typography,
+            fontSize: "1.4rem",
+            "@media (max-width: 1250px)": {
+              display: "none",
             }
           }}>
-          Dri Santos
-        </Typography>
-
-        <Typography sx={{
-          ...styleSx.typography,
-          fontSize: "1.4rem",
-          "@media (max-width: 1150px)": {
-            display: "none",
-          }
-        }}>
-          A <Typography className="main_text" data-value="FRONT END DEVELOPER" sx={{ ...styleSx.typography, fontSize: "1.4rem", fontWeight: "bold", display: "inline-block", "@media (max-width: 1150px)": { display: "none" } }}> FRONT END DEVELOPER </Typography> FROM BRAZIL </Typography>
+            A <Typography className="main_text" data-value="FRONT END DEVELOPER" sx={{ ...styleSx.typography, fontSize: "1.4rem", fontWeight: "bold", display: "inline-block", "@media (max-width: 1250px)": { display: "none" } }}> FRONT END DEVELOPER </Typography> FROM BRAZIL </Typography>
+        </Box>
+        <Box sx={styleSx.imageBox}>
+          <img src={my_pic} alt="my_pic" className="my_pic" style={styleSx.imgStyle} />
+        </Box>
       </Box>
-      <Box sx={styleSx.imageBox}>
-        <img src={my_pic} alt="my_pic" id="my_pic" style={styleSx.imgStyle} />
+      <Box sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 1
+      }}>
+        <span style={{
+          textTransform: "uppercase",
+          fontSize: "0.7rem",
+          letterSpacing: "0.05em",
+          textAlign: "center",
+          minWidth: "100px",
+        }}>
+          Check out my projects
+        </span>
+        <KeyboardDoubleArrowDownRoundedIcon sx={{
+          fontSize: "2rem", "@keyframes bounce": {
+            "0%": {
+              transform: "translateY(0)"
+            },
+            "50%": {
+              transform: "translateY(-10px)"
+            },
+            "100%": {
+              transform: "translateY(0)"
+            }
+          },
+          animation: "bounce 4s infinite",
+        }} />
       </Box>
     </Box>
   )

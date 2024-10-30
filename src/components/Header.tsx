@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 // Internal
-import laptopImage from '../assets/AS.webp'
+import initialsImage from '../assets/AS.webp'
+import cursor from '../assets/finger.png'
 
 
 const styleSx = {
@@ -18,6 +19,13 @@ const styleSx = {
     fontFamily: "Nunito",
     fontWeight: 700,
     textShadow: "0 0 2px #56595c",
+    scale: "1",
+    "&:hover": {
+      color: "#000",
+      scale: "1.05",
+      transition: "scale 0.2s, color 0.2s",
+      cursor: `url(${cursor}), auto`,
+    },
   }
 }
 
@@ -50,8 +58,21 @@ export default function Header() {
   }, [])
 
 
+  const [currentSection, setCurrentSection] = useState("HOME")
+
+
   document.addEventListener("scroll", () => {
-    console.log({ scrollY: window.scrollY });
+    // console.log({ scrollY: window.scrollY });
+    if (window.scrollY <= 750) {
+      setCurrentSection("HOME")
+    } else if (window.scrollY <= 1500) {
+      setCurrentSection("PROJECTS")
+    } else if (window.scrollY <= 2250) {
+      setCurrentSection("ABOUT ME")
+    } else {
+      setCurrentSection("TALK TO ME")
+    }
+
     if (window.scrollY > 100) {
       setHeaderColor("#FFFFE0");
       setAnimation("header-in 1.2s forwards")
@@ -112,21 +133,38 @@ export default function Header() {
           boxShadow: headerColor !== "transparent" ? "0 5px 10px #56595c" : "none"
         }}
       >
-        <Typography className="name_text" data-value="HOME" sx={styleSx.nameText}>
+        <Typography className="name_text" data-value="HOME" sx={{
+          ...styleSx.nameText,
+          color: currentSection === "HOME" ? "#000" : "#56595c"
+        }}
+          onClick={() => window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })}
+          component="a">
           HOME
         </Typography>
-        <Typography className="name_text" data-value="ABOUT ME" sx={styleSx.nameText}>
-          ABOUT ME
+        <Typography className="name_text" data-value="PROJECTS" sx={{
+          ...styleSx.nameText,
+          color: currentSection === "PROJECTS" ? "#000" : "#56595c"
+        }}>
+          PROJECTS
         </Typography>
-        <img src={laptopImage} alt="Logo" id="logo" style={{
+        <img src={initialsImage} alt="Logo" id="logo" style={{
           maxWidth: "50px",
           maxHeight: "50px",
         }}
-         />
-        <Typography className="name_text" data-value="PROJECTS" sx={styleSx.nameText}>
-          PROJECTS
+        />
+        <Typography className="name_text" data-value="ABOUT ME" sx={{
+          ...styleSx.nameText,
+          color: currentSection === "ABOUT ME" ? "#000" : "#56595c"
+        }}>
+          ABOUT ME
         </Typography>
-        <Typography className="name_text" data-value="TALK TO ME" sx={styleSx.nameText}>
+        <Typography className="name_text" data-value="TALK TO ME" sx={{
+          ...styleSx.nameText,
+          color: currentSection === "TALK TO ME" ? "#000" : "#56595c",
+        }}>
           TALK TO ME
         </Typography>
         {/* <Typography  className="name_text" data-value="DRI SANTOS" sx={{
@@ -140,7 +178,7 @@ export default function Header() {
       </Typography> */}
 
       </Box>
-      <img src={laptopImage} alt="Logo" className="logo" style={{
+      <img src={initialsImage} alt="Logo" className="logo" style={{
         maxWidth: "50px",
         maxHeight: "50px",
         alignSelf: "flex-start",
@@ -181,7 +219,7 @@ export default function Header() {
           }
         }}
       >
-        <MenuIcon fontSize='large' />
+        <MenuRoundedIcon fontSize='large' />
       </IconButton>
     </>
   )
