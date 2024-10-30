@@ -6,10 +6,10 @@ import Box from '@mui/material/Box';
 // Internal
 import Header from './components/Header'
 import LandingSection from './sections/LandingSection';
-import { Button, Grid, Typography } from '@mui/material';
+// import { Button, Grid, Typography } from '@mui/material';
 
 // Third Party
-import ReactPlayer from 'react-player/youtube'
+// import ReactPlayer from 'react-player/youtube'
 import Projects from './sections/Projects';
 
 const styleSx = {
