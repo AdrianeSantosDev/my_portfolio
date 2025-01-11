@@ -7,7 +7,9 @@ import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoub
 
 // Internal
 import my_pic from '../assets/me1.webp'
-
+// improt svg
+import openBrackets from '../assets/openBrackets.svg'
+import closeBrackets from '../assets/closeBrackets.svg'
 
 const styleSx = {
   main: {
@@ -17,8 +19,9 @@ const styleSx = {
     flexDirection: "column",
     height: "100vh",
     marginTop: "80px",
-    width: 'calc(1050px - 40px)',
-    gap: 12
+    width: "100%",
+    gap: 12,
+    position: "relative",
   },
   infoSection: {
     borderRadius: 20,
@@ -26,6 +29,8 @@ const styleSx = {
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    marginInline: "10rem",
+    paddingInline: "10rem",
     "@media (max-width: 1250px)": {
       flexDirection: "column",
       // height: "100vh",
@@ -54,8 +59,12 @@ const styleSx = {
     letterSpacing: "0.1em"
   },
   imageBox: {
-    width: "320px",
-    height: "320px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 0,
+    height: "380px",
     "@media (max-width: 1250px)": {
       order: -1,
       width: "250px",
@@ -63,23 +72,31 @@ const styleSx = {
       transition: "width 0.5s, height 0.5s",
       marginBottom: "20px",
     },
-    "@keyframes transformImage": {
-      "0%": {
-        transform: "translateX(40px)",
-      },
-      "100%": {
-        transform: "translateX(0)",
-      }
-    },
-    animation: "transformImage 1s"
+    // "@keyframes transformImage": {
+    //   "0%": {
+    //     transform: "translateX(40px)",
+    //   },
+    //   "100%": {
+    //     transform: "translateX(0)",
+    //   }
+    // },
+    // animation: "transformImage 1s"
   },
   imgStyle: {
     width: "100%",
     height: "100%",
     borderRadius: "50%",
-    border: "1px solid black",
+    border: "10px solid #F9BE39",
+    outline: "1px solid black",
+    stroke: "black",
     marginTop: "20px",
-    animation: "morph 6s linear infinite"
+    // animation: "morph 6s linear infinite",
+  },
+  svgStyle: {
+    height: "320px",
+    width: "100%",
+    marginTop: "20px",
+    borderRadius: "0%",
   }
 }
 
@@ -108,13 +125,13 @@ function LandingSection() {
   }, [])
 
   return (
-    <Box sx={styleSx.main}>
+    <Box sx={styleSx.main} id="i'm-dri">
       <Box sx={styleSx.infoSection}>
         <Box sx={styleSx.textBox}>
           <Typography
             sx={{
               ...styleSx.typography,
-              fontSize: "1.7rem",
+              fontSize: "2rem",
               "@media (max-width: 1250px)": {
                 fontWeight: "bold",
               }
@@ -125,7 +142,7 @@ function LandingSection() {
           <Typography
             sx={{
               ...styleSx.typography,
-              fontSize: "1.6rem",
+              fontSize: "2rem",
               "@media (max-width: 1250px)": {
                 fontSize: "1.7rem",
                 fontWeight: "bold",
@@ -136,15 +153,17 @@ function LandingSection() {
 
           <Typography sx={{
             ...styleSx.typography,
-            fontSize: "1.4rem",
+            fontSize: "2rem",
             "@media (max-width: 1250px)": {
               display: "none",
             }
           }}>
-            A <Typography className="main_text" data-value="FRONT END DEVELOPER" sx={{ ...styleSx.typography, fontSize: "1.4rem", fontWeight: "bold", display: "inline-block", "@media (max-width: 1250px)": { display: "none" } }}> FRONT END DEVELOPER </Typography> FROM BRAZIL </Typography>
+            A <Typography className="main_text" data-value="Front End Developer" sx={{ ...styleSx.typography, backgroundColor: "#F9BE39", paddingInline: "0.5rem", fontSize: "2rem", fontWeight: "bold", display: "inline-block", "@media (max-width: 1250px)": { display: "none" } }}> Front End Developer </Typography> from Brasil </Typography>
         </Box>
         <Box sx={styleSx.imageBox}>
+          <img src={openBrackets} alt="openBrackets" style={{...styleSx.svgStyle }} />
           <img src={my_pic} alt="my_pic" className="my_pic" style={styleSx.imgStyle} />
+          <img src={closeBrackets} alt="closeBrackets" style={{...styleSx.svgStyle }} />
         </Box>
       </Box>
       <Box sx={{

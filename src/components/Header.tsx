@@ -16,16 +16,23 @@ const styleSx = {
     fontSize: "1rem",
     color: "#56595c",
     letterSpacing: "0.05em",
-    fontFamily: "Nunito",
-    fontWeight: 700,
-    textShadow: "0 0 2px #56595c",
+    fontWeight: "400 !important",
+    // textShadow: "0 0 2px #56595c",
     scale: "1",
     "&:hover": {
       color: "#000",
       scale: "1.05",
       transition: "scale 0.2s, color 0.2s",
-      cursor: `url(${cursor}), auto`,
+      // cursor: `url(${cursor}), auto`,
     },
+  },
+  button: {
+    padding: "5px 30px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    transition: "border 0.5s",
+    borderRadius: "2px", // Opcional: arredonda os cantos para um visual mais suave
   }
 }
 
@@ -33,8 +40,8 @@ export default function Header() {
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   const [animation, setAnimation] = useState("none");
-  const [headerColor, setHeaderColor] = useState("transparent");
-
+  const [borderColor, setBorderColor] = useState("transparent");
+  const [paddingBlock, setPaddingBlock] = useState("33px");
 
   useEffect(() => {
     setTimeout(() => {
@@ -58,29 +65,37 @@ export default function Header() {
   }, [])
 
 
-  const [currentSection, setCurrentSection] = useState("HOME")
+  const [currentSection, setCurrentSection] = useState("I'm Dri")
 
 
-  document.addEventListener("scroll", () => {
-    // console.log({ scrollY: window.scrollY });
-    if (window.scrollY <= 750) {
-      setCurrentSection("HOME")
-    } else if (window.scrollY <= 1500) {
-      setCurrentSection("PROJECTS")
-    } else if (window.scrollY <= 2250) {
-      setCurrentSection("ABOUT ME")
-    } else {
-      setCurrentSection("TALK TO ME")
-    }
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY <= 750) {
+        setCurrentSection("I'm Dri")
+      } else if (window.scrollY <= 1620) {
+        setCurrentSection("Projects")
+      } else if (window.scrollY <= 2250) {
+        setCurrentSection("About me")
+      } else {
+        setCurrentSection("Habilities")
+      }
 
-    if (window.scrollY > 100) {
-      setHeaderColor("#FFFFE0");
-      setAnimation("header-in 1.2s forwards")
-    } else {
-      setHeaderColor("transparent")
-      setAnimation("header-out 1.2s forwards")
-    }
-  })
+      if (window.scrollY > 100) {
+        setBorderColor("black");
+        setPaddingBlock("10px")
+        setAnimation("header-in 1.2s forwards")
+      } else {
+        setPaddingBlock("33px")
+        setBorderColor("transparent");
+        setAnimation("header-out 1.2s forwards")
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -91,101 +106,131 @@ export default function Header() {
           justifyContent: "space-between",
           alignItems: "center",
           // gap: 15,
-          width: "960px",
+          // width: "88%",
+          left: "20px",
+          right: "20px",
+          top: "0px",
           position: "fixed",
-          top: "35px",
-          backgroundColor: headerColor,
-          border: headerColor !== "transparent" ? "1px solid #56595c" : "none",
+          height: "55px",
+          backgroundColor: borderColor !== "transparent" ? "#FFFFE0" : "transparent",
           padding: "0px 50px",
-          borderRadius: "40px",
+          // borderRadius: "40px",
+          border: `1px solid ${borderColor}`,
+          borderBottom: "none",
+          borderTop: "none",
+          paddingBlock: paddingBlock,
           "@keyframes header-in": {
             "0%": {
-              opacity: 0,
-              transform: "translateY(-20px)"
+              transform: "translateY(-20px)",
             },
             "100%": {
-              opacity: 1,
-              transform: "translateY(0)"
+              transform: "translateY(0)",
             }
           },
           "@keyframes header-out": {
             from: {
-              opacity: 0,
-              transform: "translateY(-20px)"
+              transform: "translateY(-20px)",
             },
             to: {
-              opacity: 1,
-              transform: "translateY(0)"
+              transform: "translateY(0)",
             }
           },
-          "@media (max-width: 1300px)": {
-            width: "720px",
-            padding: "0px 20px",
-            transition: "width 0.5s , top 0.5s",
-          },
-          "@media (max-width: 1000px)": {
-            top: "-100px",
-            transition: "width 0.5s , top 0.5s",
-          },
-          transition: "width 0.5s , top 0.5s",
+          // "@media (max-width: 1300px)": {
+          //   width: "720px",
+          //   padding: "0px 20px",
+          //   transition: "width 0.5s , top 0.5s",
+          // },
+          // "@media (max-width: 1000px)": {
+          //   top: "-100px",
+          //   transition: "width 0.5s , top 0.5s",
+          // },
           animation: animation,
           zIndex: 10,
-          boxShadow: headerColor !== "transparent" ? "0 5px 10px #56595c" : "none"
+          // boxShadow: borderColor !== "transparent" ? "0 5px 10px #56595c" : "none"
         }}
       >
-        <Typography className="name_text" data-value="HOME" sx={{
-          ...styleSx.nameText,
-          color: currentSection === "HOME" ? "#000" : "#56595c"
-        }}
-          onClick={() => window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          })}
-          component="a">
-          HOME
-        </Typography>
-        <Typography className="name_text" data-value="PROJECTS" sx={{
-          ...styleSx.nameText,
-          color: currentSection === "PROJECTS" ? "#000" : "#56595c"
+        <Box>
+          <Typography className="name_text" data-value="AS" sx={{
+            ...styleSx.nameText,
+            color: "#000",
+            fontWeight: "800 !important",
+            fontSize: "24px",
+          }}
+            component="a">
+            AS
+          </Typography>
+        </Box>
+        <Box sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 3
         }}>
-          PROJECTS
-        </Typography>
-        <img src={initialsImage} alt="Logo" id="logo" style={{
-          maxWidth: "50px",
-          maxHeight: "50px",
-        }}
-        />
-        <Typography className="name_text" data-value="ABOUT ME" sx={{
-          ...styleSx.nameText,
-          color: currentSection === "ABOUT ME" ? "#000" : "#56595c"
-        }}>
-          ABOUT ME
-        </Typography>
-        <Typography className="name_text" data-value="TALK TO ME" sx={{
-          ...styleSx.nameText,
-          color: currentSection === "TALK TO ME" ? "#000" : "#56595c",
-        }}>
-          TALK TO ME
-        </Typography>
+          {["I'm Dri", "Projects", "About me",].map((section) => (
+            <Typography
+              key={section}
+              className="name_text"
+              data-value={section}
+              sx={{
+                ...styleSx.nameText,
+                ...styleSx.button,
+                color: currentSection === section ? "#000" : "#56595c",
+                borderBottom: currentSection === section ? "1px solid #56595c" : "1px solid transparent",
+                borderLeft: currentSection === section ? "1px solid #56595c" : "1px solid transparent",
+                borderTop: currentSection === section ? "1px solid #56595c" : "1px solid transparent",
+                borderRight: currentSection === section ? "1px solid #56595c" : "1px solid transparent",
+              }}
+              onClick={() => {
+                if (section === "I'm Dri") {
+                  window.scrollTo({ top: 0, behavior: "smooth" })
+                  return;
+                }
+                let element = document.getElementById(section.replace(/\s+/g, '-').toLowerCase());
+                console.log({ element, section: section.replace(/\s+/g, '-').toLowerCase() });
+                
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth" })
+                }
+              }}
+            >
+              {section}
+            </Typography>
+          ))}
+        </Box>
+        <Box>
+          <Typography className="name_text" data-value="Talk to me" sx={{
+            ...styleSx.nameText,
+            ...styleSx.button,
+            color: "#000",
+            border: "1px solid #56595c",
+            transition: "none",
+            maxWidth: "117px",
+            boxShadow: "7px 6px 0px -1px rgba(0, 0, 0, 0.75)",
+            backgroundColor: "#F9BE39",
+            borderRadius: "none",
+          }}>
+            Talk to me
+          </Typography>
+        </Box>
         {/* <Typography  className="name_text" data-value="DRI SANTOS" sx={{
-        fontSize: "1.2rem",
-        fontWeight: "bold",
-        marginLeft: 2,
-        color: "#56595c",
-        letterSpacing: "0.05em"
-      }}>
-        DRI SANTOS
-      </Typography> */}
+          fontSize: "1.2rem",
+          fontWeight: "bold",
+          marginLeft: 2,
+          color: "#56595c",
+          letterSpacing: "0.05em"
+        }}>
+          DRI SANTOS
+        </Typography> */}
 
       </Box>
-      <img src={initialsImage} alt="Logo" className="logo" style={{
-        maxWidth: "50px",
-        maxHeight: "50px",
-        alignSelf: "flex-start",
-        left: "36px",
-        top: "32px",
-        position: "fixed",
-      }} />
+      {/* <img src={initialsImage} alt="Logo" className="logo" style={{
+          maxWidth: "50px",
+          maxHeight: "50px",
+          alignSelf: "flex-start",
+          left: "36px",
+          top: "32px",
+          position: "fixed",
+        }} /> */}
       <IconButton
         sx={{
           color: "#56595c",
@@ -197,7 +242,7 @@ export default function Header() {
           top: "32px",
           position: "fixed",
           "@media (min-width: 1000px)": {
-            right: "-30px",
+            right: "-40px",
             transition: "right 0.5s",
           },
           transition: "right 0.5s",

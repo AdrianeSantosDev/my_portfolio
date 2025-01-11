@@ -1,15 +1,13 @@
 * {
-  color: #56595c;
-  text-shadow: 0 0 1px #56595c
+  color: black;
+  text-shadow: 0 0 1px #56595c;
+  font-family: "Nunito", sesrif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
 }
 
-
 :root {
-  font-family: "Nunito", sans-sesrif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: #56595c;
   background-color: #FFFFE0;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,24 +22,19 @@ body {
   width: 100vw;
   overflow-x: hidden;
   border-radius: 30px;
-  color: #56595c;
-  cursor: url('./assets/cursor.png'),auto;
+  cursor: url('./assets/cursor.png'), auto;
 }
 
 
 
 #root {
-  width: calc(100% - 15.5px);
-  margin: 15px;
+  width: calc(100vw - 149.5px);
+  margin-left: 70px;
   display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   /* margin-right: 36px; */
-}
-
-#main {
-  color: black;
 }
 
 a {
@@ -67,22 +60,18 @@ a:hover {
 }
 
 /* top */
-body:before {
+/* body:before {
   content: "";
   position: fixed;
   top: 0;
   height: 15px;
   width: 100%;
-  /* background: linear-gradient(124deg, rgba(238, 139, 255, 1) 36%, rgba(139, 253, 255, 1) 74%); */
-  /* background: radial-gradient(circle at 10% 20%, rgb(254, 255, 165) 0%, rgb(255, 232, 182) 90%); */
-  /* background: rgb(238, 139, 255);
-  background: linear-gradient(251deg, rgba(238, 139, 255, 1) 22%, rgba(255, 255, 142, 1) 79%); */
   background: white;
   z-index: 10
-}
+} */
 
 /* right */
-html:after {
+/* html:after {
   content: "";
   backface-visibility: hidden;
   position: fixed;
@@ -90,36 +79,28 @@ html:after {
   right: 0;
   height: 100%;
   width: 15px;
-  /* background: linear-gradient(17deg, rgba(238, 139, 255, 1) 36%, rgba(139, 253, 255, 1) 74%); */
-  /* background: radial-gradient(circle at 10% 20%, rgb(254, 255, 165) 0%, rgb(255, 232, 182) 90%); */
-  /* background: rgb(238, 139, 255);
-  background: linear-gradient(100deg, rgba(238, 139, 255, 1) 22%, rgba(255, 255, 142, 1) 79%); */
   background: white;
   margin-top: 15px;
   z-index: 10
-}
+} */
 
 /* bottom */
-body:after {
+/* body:after {
   content: "";
   backface-visibility: hidden;
   position: fixed;
   bottom: 0;
   height: 15px;
   width: 100%;
-  /* background: linear-gradient(218deg, rgba(238, 139, 255, 1) 36%, rgba(139, 253, 255, 1) 74%); */
-  /* background: radial-gradient(circle at 10% 20%, rgb(254, 255, 165) 0%, rgb(255, 232, 182) 90%); */
-  /* background: rgb(238, 139, 255);
-  background: linear-gradient(5deg, rgba(238, 139, 255, 1) 22%, rgba(255, 255, 142, 1) 79%); */
   background: white;
   background-position: 0% 50%;
   width: calc(100% - 30px);
   margin-left: 15px;
   z-index: 10
-}
+} */
 
 /* left */
-html::before {
+/* html::before {
   content: "";
   backface-visibility: hidden;
   position: fixed;
@@ -127,15 +108,11 @@ html::before {
   left: 0;
   height: 100%;
   width: 15px;
-  /* background: linear-gradient(198deg, rgba(238, 139, 255, 1) 36%, rgba(139, 253, 255, 1) 74%); */
-  /* background: radial-gradient(circle at 10% 20%, rgb(254, 255, 165) 0%, rgb(255, 232, 182) 90%); */
-  /* background: rgb(238, 139, 255);
-  background: linear-gradient(298deg, rgba(238, 139, 255, 1) 22%, rgba(255, 255, 142, 1) 79%); */
   background: white;
   background-position: 0% 50%;
   margin-top: 15px;
   z-index: 10
-}
+} */
 
 @keyframes morph{
   0%, 100% {
@@ -162,15 +139,6 @@ html::before {
     transform: translateX(-150%);
     transition: transform 0.5s;
   }
-}
-
-.long_line {
-    height: 100%;  /* Ensures full viewport height */
-    width: 0;        /* No horizontal space */
-    border-right: 1.5px solid black;
-    position: fixed;
-    top: 0;          /* Starts at the top */
-    left: 150px;      /* Adjust horizontal position as needed */
 }
 
 h1 {

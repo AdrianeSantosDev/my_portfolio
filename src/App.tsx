@@ -18,33 +18,50 @@ const styleSx = {
     height: "1px",
     width: "100vw",
     backgroundColor: "black",
-    position: "absolute",
-    top: "100px",
-  },
-  sectionLine: {
-    height: "1px",
-    backgroundColor: "black",
-    position: "absolute",
-    top: "848px",
-    left: "100px",
-    width: 0,
+    position: "fixed",
+    top: "120px",
     "@keyframes showLine": {
       "0%": {
-        width: "0px",
+        transform: "translateX(-100%)",
       },
       "100%": {
-        width: "calc(100vw - 218px)",
+        transform: "translateX(0)",
       }
     },
     "@keyframes hideLine": {
       "0%": {
-        width: "calc(100vw - 218px)",
+        transform: "translateX(-100%)",
       },
       "100%": {
-        width: "0px",
-      }
+        left: "20px",
+        width: "96.4vw",
+        transform: "translateX(0)", }
     }
   },
+  // sectionLine: {
+  //   height: "1px",
+  //   backgroundColor: "black",
+  //   position: "absolute",
+  //   top: "873px",
+  //   left: "20px",
+  //   width: 0,
+  //   "@keyframes showLine": {
+  //     "0%": {
+  //       width: "0px",
+  //     },
+  //     "100%": {
+  //       width: "calc(100vw - 60px)",
+  //     }
+  //   },
+  //   "@keyframes hideLine": {
+  //     "0%": {
+  //       width: "calc(100vw - 90px)",
+  //     },
+  //     "100%": {
+  //       width: "0px",
+  //     }
+  //   }
+  // },
   // left-line
   leftLine: {
     height: "100%",
@@ -52,7 +69,7 @@ const styleSx = {
     backgroundColor: "black",
     position: "fixed",
     top: 0,
-    left: "100px",
+    left: "20px",
   },
   rightLine: {
     height: "100%",
@@ -60,7 +77,7 @@ const styleSx = {
     backgroundColor: "black",
     position: "fixed",
     top: 0,
-    right: "100px",
+    right: "20px",
   },
   gridItem: {
     display: "flex",
@@ -81,16 +98,19 @@ const styleSx = {
 function App() {
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   const [animation, setAnimation] = useState("none");
+  const [top, setTop] = useState("120px");
 
   // animation: "showLine 5s forwards"
 
-  
+
   document.addEventListener("scroll", () => {
     console.log({ scrollY: window.scrollY });
-    if (window.scrollY >= 140) {
+    if (window.scrollY < 140) {
       setAnimation("showLine 1s ease forwards")
+      setTop("120px")
     } else {
       setAnimation("hideLine 1s ease forwards")
+      setTop("75px")
     }
   })
 
@@ -117,16 +137,17 @@ function App() {
 
   return (
     <Box id="main" sx={{
-      padding: 1,
+      // padding: 1,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       flexDirection: "column",
+      width: "100%",
     }}>
-      <Box sx={styleSx.topLine} />
+      <Box sx={{ ...styleSx.topLine, top: top, animation: animation }} />
       <Box sx={styleSx.leftLine} />
       <Box sx={styleSx.rightLine} />
-      <Box sx={{ ...styleSx.sectionLine, animation: animation }} id="dri" />
+      {/* <Box sx={{ ...styleSx.sectionLine, animation: animation }} /> */}
       <Header />
       <LandingSection />
       <Projects />
