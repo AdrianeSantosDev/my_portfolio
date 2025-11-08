@@ -13,25 +13,28 @@ import closeBrackets from '../assets/closeBrackets.svg'
 
 const styleSx = {
   main: {
+    "& *": {
+      color: "#373737",
+    },
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
     flexDirection: "column",
     height: "100vh",
-    marginTop: "80px",
     width: "100%",
-    gap: 12,
+    "@media (max-width: 1140px)": {
+      marginTop: "30px",
+    },
     position: "relative",
   },
   infoSection: {
-    borderRadius: 20,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    marginInline: "10rem",
-    paddingInline: "10rem",
-    "@media (max-width: 1250px)": {
+    // marginInline: "10rem",
+    // paddingInline: "10rem",
+    "@media (max-width: 1140px)": {
       flexDirection: "column",
       // height: "100vh",
       width: "100%",
@@ -64,11 +67,11 @@ const styleSx = {
     justifyContent: "center",
     alignItems: "center",
     gap: 0,
-    height: "380px",
-    "@media (max-width: 1250px)": {
+    height: "250px",
+    "@media (max-width: 1140px)": {
       order: -1,
-      width: "250px",
-      height: "250px",
+      width: "200px",
+      height: "200px",
       transition: "width 0.5s, height 0.5s",
       marginBottom: "20px",
     },
@@ -93,7 +96,7 @@ const styleSx = {
     // animation: "morph 6s linear infinite",
   },
   svgStyle: {
-    height: "320px",
+    height: "200px",
     width: "100%",
     marginTop: "20px",
     borderRadius: "0%",
@@ -125,79 +128,83 @@ function LandingSection() {
   }, [])
 
   return (
-    <Box sx={styleSx.main} id="i'm-dri">
-      <Box sx={styleSx.infoSection}>
-        <Box sx={styleSx.textBox}>
-          <Typography
-            sx={{
+    <>
+      <Box sx={styleSx.main} id="i'm-dri">
+        <Box sx={styleSx.infoSection}>
+          <Box sx={styleSx.textBox}>
+            <Typography
+              sx={{
+                ...styleSx.typography,
+                fontSize: "1.5rem",
+                "@media (max-width: 1140px)": {
+                  fontWeight: "bold",
+                }
+              }}>
+              Hi, I'm
+            </Typography>
+
+            <Typography
+              sx={{
+                ...styleSx.typography,
+                fontSize: "1.5rem",
+                "@media (max-width: 1140px)": {
+                  fontSize: "1.7rem",
+                  fontWeight: "bold",
+                }
+              }}>
+              Dri Santos
+            </Typography>
+
+            <Typography sx={{
               ...styleSx.typography,
-              fontSize: "2rem",
-              "@media (max-width: 1250px)": {
-                fontWeight: "bold",
+              fontSize: "1.5rem",
+              "@media (max-width: 1140px)": {
+                display: "none",
               }
             }}>
-            Hi, I'm
-          </Typography>
-
-          <Typography
-            sx={{
-              ...styleSx.typography,
-              fontSize: "2rem",
-              "@media (max-width: 1250px)": {
-                fontSize: "1.7rem",
-                fontWeight: "bold",
-              }
-            }}>
-            Dri Santos
-          </Typography>
-
-          <Typography sx={{
-            ...styleSx.typography,
-            fontSize: "2rem",
-            "@media (max-width: 1250px)": {
-              display: "none",
-            }
-          }}>
-            A <Typography className="main_text" data-value="Front End Developer" sx={{ ...styleSx.typography, backgroundColor: "#F9BE39", paddingInline: "0.5rem", fontSize: "2rem", fontWeight: "bold", display: "inline-block", "@media (max-width: 1250px)": { display: "none" } }}> Front End Developer </Typography> from Brasil </Typography>
+              A <Typography className="main_text" data-value="Front End Developer" sx={{ ...styleSx.typography, backgroundColor: "#F9BE39", paddingInline: "0.5rem", fontSize: "1.5rem", fontWeight: "bold", display: "inline-block", "@media (max-width: 1140px)": { display: "none" } }}> Front End Developer </Typography> from Brasil </Typography>
+          </Box>
+          <Box sx={styleSx.imageBox}>
+            <img src={openBrackets} alt="openBrackets" style={{ ...styleSx.svgStyle }} />
+            <img src={my_pic} alt="my_pic" className="my_pic" style={styleSx.imgStyle} />
+            <img src={closeBrackets} alt="closeBrackets" style={{ ...styleSx.svgStyle }} />
+          </Box>
         </Box>
-        <Box sx={styleSx.imageBox}>
-          <img src={openBrackets} alt="openBrackets" style={{...styleSx.svgStyle }} />
-          <img src={my_pic} alt="my_pic" className="my_pic" style={styleSx.imgStyle} />
-          <img src={closeBrackets} alt="closeBrackets" style={{...styleSx.svgStyle }} />
-        </Box>
-      </Box>
-      <Box sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 1
-      }}>
-        <span style={{
-          textTransform: "uppercase",
-          fontSize: "0.7rem",
-          letterSpacing: "0.05em",
-          textAlign: "center",
-          minWidth: "100px",
+        <Box sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 1,
+          position: "absolute",
+          bottom: "20px",
         }}>
-          Check out my projects
-        </span>
-        <KeyboardDoubleArrowDownRoundedIcon sx={{
-          fontSize: "2rem", "@keyframes bounce": {
-            "0%": {
-              transform: "translateY(0)"
+          <span style={{
+            textTransform: "uppercase",
+            fontSize: "0.7rem",
+            letterSpacing: "0.05em",
+            textAlign: "center",
+            minWidth: "100px",
+          }}>
+            Check out my projects
+          </span>
+          <KeyboardDoubleArrowDownRoundedIcon sx={{
+            fontSize: "2rem", "@keyframes bounce": {
+              "0%": {
+                transform: "translateY(0)"
+              },
+              "50%": {
+                transform: "translateY(-10px)"
+              },
+              "100%": {
+                transform: "translateY(0)"
+              }
             },
-            "50%": {
-              transform: "translateY(-10px)"
-            },
-            "100%": {
-              transform: "translateY(0)"
-            }
-          },
-          animation: "bounce 4s infinite",
-        }} />
+            animation: "bounce 4s infinite",
+          }} />
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }
 

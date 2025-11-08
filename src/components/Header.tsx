@@ -7,13 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 // Internal
-import initialsImage from '../assets/AS.webp'
-import cursor from '../assets/finger.png'
+// import initialsImage from '../assets/AS.webp'
+// import cursor from '../assets/finger.png'
 
 
 const styleSx = {
   nameText: {
-    fontSize: "1rem",
+    fontSize: "0.8rem",
     color: "#56595c",
     letterSpacing: "0.05em",
     fontWeight: "400 !important",
@@ -27,7 +27,7 @@ const styleSx = {
     },
   },
   button: {
-    padding: "5px 30px",
+    padding: "8px 20px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -39,9 +39,10 @@ const styleSx = {
 export default function Header() {
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  const [animation, setAnimation] = useState("none");
-  const [borderColor, setBorderColor] = useState("transparent");
+  const [animationHeader, setAnimationHeader] = useState("none");
+  const [borderColor, setBorderColor] = useState("black");
   const [paddingBlock, setPaddingBlock] = useState("33px");
+  // const [animationLine, setAnimationLine] = useState("none");
 
   useEffect(() => {
     setTimeout(() => {
@@ -81,13 +82,15 @@ export default function Header() {
       }
 
       if (window.scrollY > 100) {
-        setBorderColor("black");
         setPaddingBlock("10px")
-        setAnimation("header-in 1.2s forwards")
+        setAnimationHeader("header-in 1.2s forwards")
+        setBorderColor("black")
+        // setAnimationLine("showLine 1s forwards")
       } else {
         setPaddingBlock("33px")
-        setBorderColor("transparent");
-        setAnimation("header-out 1.2s forwards")
+        setAnimationHeader("header-out 1.2s forwards")
+        setBorderColor("transparent")
+        // setAnimationLine("hideLine 0.01s forwards")
       }
     };
 
@@ -111,40 +114,15 @@ export default function Header() {
           right: "20px",
           top: "0px",
           position: "fixed",
-          height: "55px",
           backgroundColor: borderColor !== "transparent" ? "#FFFFE0" : "transparent",
-          padding: "0px 50px",
+          padding: "0px 80px",
           // borderRadius: "40px",
           border: `1px solid ${borderColor}`,
-          borderBottom: "none",
           borderTop: "none",
           paddingBlock: paddingBlock,
-          "@keyframes header-in": {
-            "0%": {
-              transform: "translateY(-20px)",
-            },
-            "100%": {
-              transform: "translateY(0)",
-            }
-          },
-          "@keyframes header-out": {
-            from: {
-              transform: "translateY(-20px)",
-            },
-            to: {
-              transform: "translateY(0)",
-            }
-          },
-          // "@media (max-width: 1300px)": {
-          //   width: "720px",
-          //   padding: "0px 20px",
-          //   transition: "width 0.5s , top 0.5s",
-          // },
-          // "@media (max-width: 1000px)": {
-          //   top: "-100px",
-          //   transition: "width 0.5s , top 0.5s",
-          // },
-          animation: animation,
+          borderBottom: `1px solid ${borderColor}`,
+          transition: "padding 0.5s, top 0.5s, background-color 0.5s, border 0.5s",
+          animation: animationHeader,
           zIndex: 10,
           // boxShadow: borderColor !== "transparent" ? "0 5px 10px #56595c" : "none"
         }}
@@ -203,11 +181,15 @@ export default function Header() {
             ...styleSx.button,
             color: "#000",
             border: "1px solid #56595c",
-            transition: "none",
             maxWidth: "117px",
             boxShadow: "7px 6px 0px -1px rgba(0, 0, 0, 0.75)",
             backgroundColor: "#F9BE39",
             borderRadius: "none",
+            transition: "box-shadow 0.5s, transform 0.5s",
+            "&:hover": {
+              boxShadow: "none",
+              transform: "translate(2px, 2px)",
+            }
           }}>
             Talk to me
           </Typography>
@@ -238,7 +220,7 @@ export default function Header() {
             color: "#000"
           },
           alignSelf: "flex-end",
-          right: "30px",
+          right: "50px",
           top: "32px",
           position: "fixed",
           "@media (min-width: 1000px)": {
