@@ -28,8 +28,8 @@ body {
 
 
 #root {
-  width: calc(100vw - 149.5px);
-  margin-left: 70px;
+  width: calc(100vw - 212.5px);
+  margin-left: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
